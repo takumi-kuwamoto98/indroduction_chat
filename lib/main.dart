@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:money_chat/message_widget.dart';
 
 void main() {
   runApp(const MyApp());
@@ -55,19 +56,6 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  int _counter = 0;
-
-  void _incrementCounter() {
-    setState(() {
-      // This call to setState tells the Flutter framework that something has
-      // changed in this State, which causes it to rerun the build method below
-      // so that the display can reflect the updated values. If we changed
-      // _counter without calling setState(), then the build method would not be
-      // called again, and so nothing would appear to happen.
-      _counter++;
-    });
-  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -75,19 +63,15 @@ class _MyHomePageState extends State<MyHomePage> {
           backgroundColor: Theme.of(context).colorScheme.inversePrimary,
           title: Text(widget.title),
         ),
-        body: SafeArea(
-            child: ListView(
-          children: const [
-            ListTile(
-              leading: CircleAvatar(
-                backgroundColor: Colors.blue,
-                child: Text('A'),
-              ),
-              trailing: Text('52年前'),
-              title: Text('Steaven'),
-              subtitle: Text('おはよ！昨日はありがとう。'),
-            ),
+        body: const SafeArea(child: MessageWidget()),
+        bottomNavigationBar: BottomNavigationBar(
+          currentIndex: 1,
+          items: const [
+            BottomNavigationBarItem(icon: Icon(Icons.message), label: 'Home'),
+            BottomNavigationBarItem(icon: Icon(Icons.call), label: 'Call'),
+            BottomNavigationBarItem(
+                icon: Icon(Icons.settings), label: 'Settings')
           ],
-        )));
+        ));
   }
 }
